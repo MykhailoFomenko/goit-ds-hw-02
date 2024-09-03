@@ -200,7 +200,7 @@ def users_with_progress_status(conn):
         FROM users as a
         INNER JOIN tasks as b ON b.user_id = a.id
         WHERE b.status_id = 2
-        GROUP BY b.user_id
+        GROUP BY b.id
     '''
     rows = None
     cur = conn.cursor()
@@ -219,7 +219,7 @@ def users_and_count_of_their_tasks(conn):
     SELECT a.fullname as users, COUNT(b.title) as task
         FROM users as a
         LEFT JOIN tasks as b ON b.user_id = a.id
-        GROUP BY b.user_id
+        GROUP BY a.id
     '''
     rows = None
     cur = conn.cursor()
